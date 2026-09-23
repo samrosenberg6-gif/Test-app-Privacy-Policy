@@ -20,38 +20,52 @@
 <body>
 <main>
   <h1>Privacy Policy</h1>
-  <div class="meta">Test app Monetization Sample · Effective date: 22 September 2026</div>
+  <div class="meta">Test app Monetization Sample · Effective date: 23 September 2026</div>
 
-  <p>This Privacy Policy explains how <strong>Test app Monetization Sample</strong> handles information when you use the app.</p>
+  <p>This Privacy Policy explains how <strong>Test app Monetization Sample</strong> handles information when you use the app. This policy reflects the current test configuration, including Google Play Billing, Firebase Authentication, and the developer-operated backend used to verify purchases and maintain entitlement state.</p>
 
-  <h2>1. Information we collect</h2>
-  <p>The current sample release is configured to use a mock monetization provider. In this configuration, the app does not require an account, does not request sensitive device permissions, and does not intentionally collect or send personal or sensitive user data to the developer.</p>
-  <p>The sample app does not include developer-operated advertising, analytics, crash-reporting, or Firebase client services in the distributed sample configuration.</p>
+  <h2>1. Information we process</h2>
+  <p>The current test build uses Google Play Billing for subscription purchases. When a purchase is initiated or restored, the app receives purchase-related information from Google Play, including the product identifier and purchase token.</p>
+  <p>The app also uses <strong>Firebase Authentication with anonymous sign-in</strong>. This creates a temporary Firebase user identifier so the app can authenticate requests to the developer backend without requiring the tester to create an account with an email address or password.</p>
+  <p>For purchase verification, the app sends the following information to the developer backend over HTTPS: the Firebase authentication token, the app package name, the Google Play product identifier, and the purchase token.</p>
 
-  <h2>2. Google Play Billing</h2>
-  <p>The project includes an optional Google Play Billing integration for testing and demonstration. The current sample release keeps live Google Play Billing disabled and uses the mock provider by default.</p>
-  <p>If a future test or production build enables Google Play Billing, transaction and purchase information is processed through Google Play as part of the billing service. The app may receive purchase-related information, including a purchase token, to handle the billing result. Google Play's handling of this information is governed by Google's applicable privacy policy and terms.</p>
+  <h2>2. How we use this information</h2>
+  <p>We use this information only to operate and test the monetization flow, including purchase attribution, verification of Google Play purchase state, acknowledgement of eligible purchases, and calculation of the corresponding entitlement state.</p>
+  <p>The backend associates purchases with the authenticated Firebase user and verifies the purchase against the Google Play Developer API before granting or updating an entitlement.</p>
 
-  <h2>3. Data sharing</h2>
-  <p>In the current sample configuration, the developer does not sell, rent, or share personal information collected by the app because the app does not intentionally collect such information.</p>
-  <p>When live Google Play Billing is enabled, information necessary for the billing transaction is handled by Google Play. Any future backend verification service connected to the app would be separately documented and reflected in an updated version of this Privacy Policy.</p>
+  <h2>3. Information stored by the developer backend</h2>
+  <p>The backend may store an anonymous customer identifier associated with the Firebase user, the entitlement identifier, product identifier(s), purchase/subscription state, entitlement expiry information when applicable, and a one-way hash of the Google Play purchase token for purchase association and reconciliation.</p>
+  <p>The raw Google Play purchase token is not intentionally stored in the entitlement records described above.</p>
 
-  <h2>4. Data retention and deletion</h2>
-  <p>The current sample configuration does not maintain a developer-operated user account database or intentionally retain personal information collected from users.</p>
-  <p>Because the current sample does not provide account creation, there is no developer-managed app account to delete. Information handled by Google Play is subject to Google's own retention and deletion practices.</p>
+  <h2>4. Google Play Billing and third-party services</h2>
+  <p>Payments and payment credentials are handled by Google Play Billing. The developer does not receive the payment-card or other payment credentials used to complete a Google Play transaction.</p>
+  <p>Firebase Authentication is used for anonymous authentication, and the developer backend runs on Google Cloud/Firebase services. These services process information as necessary to provide authentication, secure backend execution, purchase verification, and entitlement management.</p>
+  <p>Google Play and the applicable Google services have their own privacy policies and terms governing their handling of information.</p>
 
-  <h2>5. Security</h2>
-  <p>The project is designed so that purchase tokens are not written to analytics events and, in a production architecture, are intended to be sent only to an authorized secure backend over HTTPS for verification. The current sample configuration does not connect the app to such a backend.</p>
+  <h2>5. Data sharing</h2>
+  <p>The developer does not sell or rent personal information collected by the app.</p>
+  <p>Information is shared with Google Play and Google Cloud/Firebase services only as necessary to authenticate the tester, process or verify purchases, operate the backend, and maintain entitlement state.</p>
+  <p>The sample app does not include developer-operated advertising or analytics. It also does not intentionally collect contacts, precise location, photos, messages, or other sensitive device data.</p>
 
-  <h2>6. Children's privacy</h2>
-  <p>The current sample is a technical demonstration app intended for software development and testing. It is not designed as a service for children and does not knowingly collect personal information from children.</p>
+  <h2>6. Data retention and deletion</h2>
+  <p>The anonymous Firebase user identifier and backend entitlement records may remain while they are needed to operate, test, reconcile, or audit the monetization flow.</p>
+  <p>The current test app does not provide user-facing account creation or an in-app account deletion workflow. Testers who need information associated with an anonymous test account removed may contact the developer using the address below.</p>
+  <p>Information retained by Google Play or Google Cloud/Firebase is subject to the applicable retention and deletion practices of those services.</p>
 
-  <h2>7. Changes to this Privacy Policy</h2>
+  <h2>7. Security</h2>
+  <p>Purchase verification requests are transmitted to the developer backend over HTTPS. The backend uses the authenticated Firebase user identity to associate purchases and checks the purchase state with the Google Play Developer API before granting entitlement.</p>
+  <p>Purchase tokens are not intentionally written to analytics events. Purchase-token hashes are used for backend association and reconciliation rather than storing the raw token in entitlement records.</p>
+
+  <h2>8. Children's privacy</h2>
+  <p>The current sample is a technical demonstration application intended for software development and testing. It is not designed as a service for children and does not knowingly collect personal information from children.</p>
+
+  <h2>9. Changes to this Privacy Policy</h2>
   <p>This policy may be updated when the app's functionality, data practices, or third-party integrations change. The effective date at the top of this page will be updated when material changes are made.</p>
 
-  <h2>8. Contact</h2>
-  <p>For privacy questions about this app, contact the developer at the privacy contact address listed in the app's Google Play developer information.</p>
-  <p class="note"><strong>Before publishing:</strong> replace the contact wording above with an actual monitored privacy contact email if your Play Console listing requires a specific address.</p>
+  <h2>10. Contact</h2>
+  <p>For privacy questions or requests concerning this app, contact <strong>oblivion6792@gmail.com</strong>.</p>
+
+  <p class="note"><strong>Current scope:</strong> This policy describes the real Google Play Billing test configuration distributed through the app's internal testing track. Material changes to the data practices will be reflected in a future revision.</p>
 
   <footer>
     This page is the governing privacy policy for the current Test app Monetization Sample release.
